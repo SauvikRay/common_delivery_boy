@@ -46,7 +46,7 @@ dependencies:
   # flutter_html:
   # flutter_svg:
   # url_launcher:
-  # toast:
+  toast: ^0.3.0
   # shared_preferences:
   # flutter_icons:
   # dotted_line:
@@ -55,20 +55,20 @@ dependencies:
   # after_init:
   # webview_flutter:
   # clipboard:
-  # google_fonts:
+  google_fonts: ^4.0.3
   # flutter_rating_bar:
   # expandable:
   # dropdown_search:
   # flutter_countdown_timer:
   # splashscreen:
-  # package_info:
-  # intl_phone_number_input:
+  package_info_plus: ^3.0.3
+  intl_phone_number_input: ^0.7.2
   # flutter_chat_bubble:
   # cupertino_icons:
   # carousel_slider:
   # cached_network_image:
   # timeline_tile:
-  # shared_value:
+  shared_value: ^3.0.0
   # rename:
   # permission_handler:
   # image_picker:
