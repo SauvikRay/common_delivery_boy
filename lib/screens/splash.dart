@@ -46,7 +46,7 @@ class _SplashState extends State<Splash> {
 
     // <fetch data from server. ex. login>
 
-    return Future.value(  MainScreen());
+    return Future.value( MainScreen());
   }
 
 

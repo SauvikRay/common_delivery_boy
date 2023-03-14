@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -70,19 +72,18 @@ class _LoginState extends State<Login> {
     }
 
     var loginResponse = await AuthRepository()
-        .getLoginResponse(_login_by == 'email' ? email : _phone, password);
+        .getLoginResponse(email : _login_by == 'email' ?  _phone: _phone, password:password, );
 
     if (loginResponse.result == false) {
       ToastComponent.showDialog(loginResponse.message, context,
           gravity: Toast.center, duration: Toast.lengthLong);
     } else {
-      //print('dd');
       ToastComponent.showDialog(loginResponse.message, context,
           gravity: Toast.center, duration: Toast.lengthLong);
       AuthHelper().setUserData(loginResponse);
       access_token.load().whenComplete(() {
         if (access_token.$.isNotEmpty) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) {
               return MainScreen();
@@ -114,7 +115,7 @@ class _LoginState extends State<Login> {
             width: _screen_width * (3 / 4),
             child: Image.asset(
               "assets/splash_login_background_logo.png",
-              color: Color.fromRGBO(225, 225, 225, .1),
+              color: const Color.fromRGBO(225, 225, 225, .1),
             ),
           ),
         ),
@@ -131,8 +132,8 @@ class _LoginState extends State<Login> {
                       width: 75,
                       child: Image.asset("assets/delivery_app_logo.png")),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
+                const Padding(
+                  padding: EdgeInsets.only(
                     top: 20,
                     bottom: 0.0,
                   ),
@@ -151,7 +152,7 @@ class _LoginState extends State<Login> {
                   ),
                   child: Text(
                     AppConfig.app_name,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 22,
                         fontWeight: FontWeight.w600),
@@ -180,8 +181,14 @@ class _LoginState extends State<Login> {
                               Container(
                                 height: 36,
                                 child: TextField(
-                                  style: TextStyle(color: Colors.white70),
+                                  style: const TextStyle(color: Colors.white70),
                                   controller: _emailController,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      
+                                 _phone=value;
+                                    });
+                                  },
                                   autofocus: false,
                                   keyboardType: TextInputType.number,
                                   decoration:
@@ -229,7 +236,7 @@ class _LoginState extends State<Login> {
                                 obscureText: true,
                                 enableSuggestions: false,
                                 autocorrect: false,
-                                style: TextStyle(color: Colors.white70),
+                                style: const TextStyle(color: Colors.white70),
                                 decoration:
                                     InputDecorations.buildInputDecoration_1(
                                         hint_text: "• • • • • • • •"),
@@ -364,7 +371,7 @@ class _LoginState extends State<Login> {
                                 obscureText: true,
                                 enableSuggestions: false,
                                 autocorrect: false,
-                                style: TextStyle(color: Colors.white70),
+                                style: const TextStyle(color: Colors.white70),
                                 decoration:
                                     InputDecorations.buildInputDecoration_1(
                                         hint_text: "• • • • • • • •"),
@@ -401,10 +408,10 @@ class _LoginState extends State<Login> {
                             minWidth: MediaQuery.of(context).size.width,
                             //height: 50,
                             color: MyTheme.golden,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: const BorderRadius.all(
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
                                     Radius.circular(12.0))),
-                            child: Text(
+                            child: const Text(
                               "LOGIN",
                               style: TextStyle(
                                   color: Colors.black,
@@ -420,8 +427,8 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
+                const Padding(
+                  padding: EdgeInsets.only(
                     top: 10,
                   ),
                   child: Text(
@@ -429,8 +436,8 @@ class _LoginState extends State<Login> {
                     style: TextStyle(fontSize: 14, color: Colors.cyanAccent),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
+                const Padding(
+                  padding: EdgeInsets.only(
                     top: 0,
                   ),
                   child: Text(

@@ -37,52 +37,24 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   http: ^0.13.5
-  provider: ^6.0.5
-  # json_annotation: ^4.8.0
-  # logging: ^1.1.1
-  # connectivity:
-  # shimmer:
-  # bordered_text:
-  # flutter_html:
-  # flutter_svg:
-  # url_launcher:
+  connectivity_plus: ^3.0.3
+  shimmer: ^2.0.0
+  url_launcher: ^6.1.10
   toast: ^0.3.0
-  # shared_preferences:
-  # flutter_icons:
-  # dotted_line:
-  # timeline_list:
-  # progress_dialog:
-  # after_init:
-  # webview_flutter:
-  # clipboard:
   google_fonts: ^4.0.3
-  # flutter_rating_bar:
-  # expandable:
-  # dropdown_search:
-  # flutter_countdown_timer:
-  # splashscreen:
   package_info_plus: ^3.0.3
   intl_phone_number_input: ^0.7.2
-  # flutter_chat_bubble:
-  # cupertino_icons:
-  # carousel_slider:
-  # cached_network_image:
-  # timeline_tile:
+  font_awesome_flutter: ^10.4.0
+  timeline_tile: ^2.0.0
   shared_value: ^3.0.0
-  # rename:
-  # permission_handler:
-  # image_picker:
-  # google_nav_bar:
+  permission_handler: ^9.2.0
+  image_picker: ^0.8.7
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  # build_runner:
-  # json_serializable:
-  # flutter_launcher_icons:
-  # google_maps_flutter:
-  # route_transitions:
+  google_maps_flutter: ^2.1.1
 
 
 # flutter_icons:

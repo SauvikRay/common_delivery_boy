@@ -2,28 +2,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter/services.dart';
-import 'package:toast/toast.dart';
 
-import '../helpers/shared_value_helper.dart';
-import 'completed_delivery.dart';
-import 'earnings.dart';
-import 'home.dart';
-import 'login.dart';
-import 'profile_edit.dart';
+import '../my_theme.dart';
+import 'assigned_delivery.dart';
+import 'on_the_way_delivery.dart';
+import 'picked_delivery.dart';
 
-class MainScreen extends StatefulWidget {
+class Pending extends StatefulWidget {
+  const Pending({super.key,  this.index=0});
+  final int index;
+
   @override
-  _MainScreenState createState() => _MainScreenState();
+  State<Pending> createState() => _PendingState();
 }
 
-class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
-  var _children = [
-    Home(),
-    CompletedDelivery(),
-    Earnings(),
-    ProfileEdit()
+class _PendingState extends State<Pending> {
 
+  
+  int _currentIndex =0;
+  var _children = [
+    OnTheWayDelivery(show_back_button: true,),
+    PickedDelivery(show_back_button: true,),
+    AssignedDelivery(show_back_button: true,),
   ];
 
   void onTapped(int i) {
@@ -39,15 +39,19 @@ class _MainScreenState extends State<MainScreen> {
         SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     super.initState();
 
+    _currentIndex = widget.index;
+
   }
 
   onPop(value) {
 
   }
 
+
   @override
   Widget build(BuildContext context) {
-    return access_token.$.isNotEmpty? Scaffold(
+     var screen_width = MediaQuery.of(context).size.width;
+    return Scaffold(
       extendBody: true,
       body: _children[_currentIndex],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -69,53 +73,38 @@ class _MainScreenState extends State<MainScreen> {
             items: [
               BottomNavigationBarItem(
                   icon: Image.asset(
-                    "assets/dashboard.png",
+                    "assets/human_run.png",
                     color: _currentIndex == 0
-                        ? Theme
-                        .of(context)
-                        .colorScheme.secondary
+                        ? MyTheme.red
                         : Color.fromRGBO(153, 153, 153, 1),
                     height: 20,
                   ),
-                  label: "Dashboard"),
+                  label: "On the Way"),
               BottomNavigationBarItem(
                   icon: Image.asset(
-                    "assets/delivery.png",
+                    "assets/press.png",
                     color: _currentIndex == 1
-                        ? Theme
-                        .of(context).colorScheme
-                        .secondary
+                        ? MyTheme.golden
                         : Color.fromRGBO(153, 153, 153, 1),
                     height: 20,
                   ),
-                  label: "My Delivery"),
+                  label: "Picked"),
 
               BottomNavigationBarItem(
                   icon: Image.asset(
-                    "assets/earnings.png",
+                    "assets/sandclock.png",
                     color: _currentIndex == 2
-                        ? Theme
-                        .of(context)
-                        .colorScheme.secondary
+                        ? MyTheme.blue
                         : Color.fromRGBO(153, 153, 153, 1),
                     height: 20,
                   ),
-                  label: "My Earnings"),
-              BottomNavigationBarItem(
-                  icon: Image.asset(
-                    "assets/profile.png",
-                    color: _currentIndex == 3
-                        ? Theme
-                        .of(context)
-                        .colorScheme.secondary
-                        : Color.fromRGBO(153, 153, 153, 1),
-                    height: 20,
-                  ),
-                  label: "Profile"),
+                  label:  "Assigned"),
             ],
           ),
         ),
       ),
-    ):Login();
+    );
+  
   }
 }
+

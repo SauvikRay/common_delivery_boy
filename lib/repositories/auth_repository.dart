@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'dart:convert';
@@ -9,13 +11,15 @@ import '../data_model/user_by_token.dart';
 import '../helpers/shared_value_helper.dart';
 
 class AuthRepository {
-  Future<LoginResponse> getLoginResponse(
-      @required String email, @required String password) async {
-    var post_body = jsonEncode({"user_type": "delivery_boy","email": "${email}", "password": "$password"});
+  Future<LoginResponse> getLoginResponse({required String email, required String password}) async {
+    var post_body = jsonEncode({"user_type": "delivery_boy","phone": "${email}", "password": "$password"});
 
     final response = await http.post(Uri.parse("${AppConfig.BASE_URL}/auth/login"),
         headers: {"Content-Type": "application/json","X-Requested-With":"XMLHttpRequest"}, body: post_body);
-    print(response.body);
+    if(response.statusCode==200){
+    log("Login Response ${response.body}");
+
+    }
     return loginResponseFromJson(response.body);
   }
 

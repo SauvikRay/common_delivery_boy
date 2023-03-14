@@ -22,15 +22,16 @@ class LoginResponse {
   String message;
   String access_token;
   String token_type;
-  DateTime expires_at;
-  User user;
+  DateTime? expires_at;
+  dynamic user;
+  // User user;
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
     result: json["result"],
     message: json["message"],
     access_token: json["access_token"],// == null ? null : json["access_token"],
     token_type: json["token_type"], //== null ? null : json["token_type"],
-    expires_at: json["expires_at"], //== null ? null : DateTime.parse(json["expires_at"]),
+    expires_at: json["expires_at"]== null ? null : DateTime.parse(json["expires_at"]),
     user: json["user"] //== null ? null : User.fromJson(json["user"]),
   );
 
@@ -39,7 +40,7 @@ class LoginResponse {
     "message": message,
     "access_token": access_token == null ? null : access_token,
     "token_type": token_type == null ? null : token_type,
-    "expires_at": expires_at == null ? null : expires_at.toIso8601String(),
+    "expires_at": expires_at == null ? null : expires_at!.toIso8601String(),
     "user": user == null ? null : user.toJson(),
   };
 }
